@@ -1,0 +1,3 @@
+=TRIM(CLEAN(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A2,"!"," "),","," "),"?"," "),";"," "),":"," "),"("," "),")"," ")))
+
+'source: https://www.quora.com/What-is-the-clean-function-in-Excel
