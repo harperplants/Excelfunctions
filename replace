@@ -1,3 +1,37 @@
 =TRIM(CLEAN(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(A2,"!"," "),","," "),"?"," "),";"," "),":"," "),"("," "),")"," ")))
 
 'source: https://www.quora.com/What-is-the-clean-function-in-Excel
+
+---------
+'related:
+
+'https://excel.uservoice.com/users/979007149-michael-daughety
+'Michael Daughety commented  ·  April 06, 2020
+'Here is a VBA Function that I wrote that is pretty clean:
+
+Public Function CleanString(ByVal strSource As String, ByVal strCharToClean As String) As String
+Dim arrRemove() As String
+Dim strOut As String
+Dim iChar1 As Long
+Dim iChar2 As Long
+
+ReDim arrRemove(Len(strCharToClean))
+
+For iChar1 = 0 To UBound(arrRemove)
+arrRemove(iChar1) = Mid(strCharToClean, iChar1 + 1, 1)
+Next
+arrRemove(UBound(arrRemove)) = Chr(34)
+For iChar1 = 1 To Len(strSource)
+bFound = False
+For iChar2 = LBound(arrRemove) To UBound(arrRemove)
+If Mid(strSource, iChar1, 1) = arrRemove(iChar2) Then
+bFound = True
+Exit For
+End If
+Next
+If Not bFound Then
+strOut = strOut & Mid(strSource, iChar1, 1)
+End If
+Next
+CleanString = strOut
+End Function
